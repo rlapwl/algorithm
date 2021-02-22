@@ -2,6 +2,7 @@ import java.util.*;
 
 // Solution2
 class OddOccurrencesInArray2 {
+    // O(N) or O(N*log(N))
     public int solution(int[] A) {
         int result = 0;
         Arrays.sort(A);
