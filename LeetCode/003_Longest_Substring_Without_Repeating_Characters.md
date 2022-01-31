@@ -6,6 +6,7 @@ Output: 3
 Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
 ```
+#### Solution 1
 ```java
 class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -25,6 +26,31 @@ class Solution {
             }
         }
         maxLen = Math.max(maxLen, subString.length());
+        return maxLen;
+    }
+}
+```
+#### Solution 2
+```java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int start = 0;
+        int idx = 0;
+        int maxLen = 0;
+        
+        Set<Character> subSet = new HashSet<>();
+
+        while (idx < s.length()) {
+            char c = s.charAt(idx);
+            if (!subSet.contains(c)) {
+                subSet.add(c);
+                maxLen = Math.max(maxLen, subSet.size());
+                idx++;
+            } else {
+                subSet.remove(s.charAt(start));
+                start++;
+            }
+        }
         return maxLen;
     }
 }
