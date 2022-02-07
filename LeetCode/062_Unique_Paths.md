@@ -6,23 +6,24 @@ Output: 28
 ```
 ```java
 class Solution {
+    private int[][] paths;
     public int uniquePaths(int m, int n) {
-        return movePath(m, n, 0, 0);
+        paths = new int[m][n];
+        movePath(m, n);
+        return paths[m - 1][n - 1];
     }
     
-    private int movePath(int m, int n, int x, int y) {
-        if (x == (m - 1) && y == (n - 1)) {
-            return 1;
+    private void movePath(int m, int n) {
+        for (int y = 0; y < n; y++) {
+            paths[0][y] = 1;
         }
         
-        if (x == m || y == n) {
-            return 0;
+        for (int x = 1; x < m; x++) {
+            paths[x][0] = 1;
+            for (int y = 1; y < n; y++) {
+                paths[x][y] = paths[x - 1][y] + paths[x][y - 1];
+            }
         }
-        
-        int count = 0;
-        count += movePath(m, n, x + 1, y);
-        count += movePath(m, n, x, y + 1);
-        return count;
     }
 }
 ```
