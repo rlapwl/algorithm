@@ -5,6 +5,8 @@ Input: root = [5,1,4,null,null,3,6]
 Output: false
 Explanation: The root node's value is 5 but its right child's value is 4.
 ```
+
+#### Solution 1
 ```java
 /**
  * Definition for a binary tree node.
@@ -38,6 +40,30 @@ class Solution {
             }
             leftVal = (double) root.val;
             root = root.right;
+        }
+        return true;
+    }
+}
+```
+
+#### Solution 2
+```java
+class Solution {
+    private Integer preVal = null;
+    
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (!isValidBST(root.left)) {
+            return false;
+        }
+        if (preVal != null && root.val <= preVal) {
+            return false;
+        }
+        preVal = root.val;
+        if (!isValidBST(root.right)) {
+            return false;
         }
         return true;
     }
