@@ -5,4 +5,21 @@ Input: n = 3
 Output: 5
 ```
 ```java
+class Solution {
+    public int numTrees(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        
+        // j = root
+        // j - 1: 왼쪽 서브트리의 경우의 수
+        // ㅑ - ㅓ: 오른쪽 서브트리의 경우의 수
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                dp[i] += (dp[j - 1] * dp[i - j]);
+            }
+        }
+        return dp[n];
+    }
+}
 ```
