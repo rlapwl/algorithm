@@ -7,9 +7,9 @@ Explanation: The elements in the matrix are [1,5,9,10,11,12,13,13,15], and the 8
 ```
 ```java
 class Solution {
-    public int kthSmallest(int[][] matrix, int k) {
+	public int kthSmallest(int[][] matrix, int k) {
 		int n = matrix.length;
-        int min = matrix[0][0];
+		int min = matrix[0][0];
 		int max = matrix[n - 1][n - 1];
 		
 		while (min <= max) {
@@ -34,6 +34,6 @@ class Solution {
 			}
 		}
 		return min;
-    }
+	}
 }
 ```
